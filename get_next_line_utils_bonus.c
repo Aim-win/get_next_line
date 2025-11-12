@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momahdam <momahdam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ssss <ssss@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 12:06:43 by momahdam          #+#    #+#             */
-/*   Updated: 2025/11/12 07:39:43 by momahdam         ###   ########.fr       */
+/*   Updated: 2025/11/12 10:19:54 by ssss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,30 @@ char	*ft_strjoin(char *s1, char *s2)
 	res[i] = '\0';
 	free(s1);
 	return (res);
+}
+
+void	*ft_memmove(void *dest, const void *src, size_t n)
+{
+	size_t	i;
+
+	if (!dest || !src)
+		return (NULL);
+	if (dest == src)
+		return (dest);
+	if (dest > src)
+	{
+		i = n;
+		while (i-- > 0)
+			((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+	}
+	else
+	{
+		i = 0;
+		while (i < n)
+		{
+			((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+			i++;
+		}
+	}
+	return (dest);
 }

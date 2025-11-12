@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momahdam <momahdam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ssss <ssss@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 12:06:50 by momahdam          #+#    #+#             */
-/*   Updated: 2025/11/12 08:05:52 by momahdam         ###   ########.fr       */
+/*   Updated: 2025/11/12 10:24:52 by ssss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*get_next_line(int fd);
 
 size_t	ft_strlen(char *s);
+
+void	*ft_memmove(void *dest, const void *src, size_t n);
 
 #endif
