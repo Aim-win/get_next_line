@@ -6,7 +6,7 @@
 /*   By: momahdam <momahdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 12:06:43 by momahdam          #+#    #+#             */
-/*   Updated: 2025/11/11 21:47:49 by momahdam         ###   ########.fr       */
+/*   Updated: 2025/11/12 07:39:43 by momahdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	size_t  i;
-	unsigned char *arr;
+	size_t			i;
+	unsigned char	*arr;
 
 	if (!s)
 		return ;
@@ -29,9 +29,9 @@ void	*ft_calloc(size_t n, size_t size)
 {
 	void	*ptr;
 	size_t	tt;
-	
+
 	if (n == 0 || size == 0)
-    	return (malloc(1));
+		return (malloc(1));
 	tt = n * size;
 	if (tt / size != n)
 		return (NULL);
@@ -42,29 +42,43 @@ void	*ft_calloc(size_t n, size_t size)
 	return (ptr);
 }
 
-void	ft_strlcat(char *dest, const char *src)
+size_t	ft_strlen(char *s)
 {
-	static int	i = 0;
-	int	j = 0;
+	size_t	i;
 
-	while (src[j] != '\0')
-		dest[i++] = src[j++];
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i])
+		i++;
+	return (i);
 }
 
-char *ft_(char *buff, int i)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	char *s2;
-	int y = 0;
-	static int j;
+	size_t	i;
+	size_t	j;
+	char	*res;
 
-	j = 0;
-	s2 = malloc(i - j + 1);
-	if (!s2)
+	if (!s1)
+		s1 = ft_calloc(1, 1);
+	if (!s1 || !s2)
 		return (NULL);
-	while (buff[j] != '\n' && i - j != 0)
+	i = ft_strlen(s1);
+	j = ft_strlen(s2);
+	res = (char *)malloc(i + j + 1);
+	if (!res)
+		return (free(s1), NULL);
+	i = 0;
+	while (s1[i])
 	{
-		s2[y++] = buff[j];
-		j++;
+		res[i] = s1[i];
+		i++;
 	}
-	return (s2);
+	j = 0;
+	while (s2[j])
+		res[i++] = s2[j++];
+	res[i] = '\0';
+	free(s1);
+	return (res);
 }

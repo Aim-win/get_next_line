@@ -6,27 +6,35 @@
 /*   By: momahdam <momahdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 12:06:50 by momahdam          #+#    #+#             */
-/*   Updated: 2025/11/11 21:37:22 by momahdam         ###   ########.fr       */
+/*   Updated: 2025/11/12 08:05:52 by momahdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT
-# define GET_NEXT
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
-#ifndef BUFFER_SIZE
-#define BUFFER_SIZE 4
+# include <unistd.h>
+# include <stdlib.h>
+# include <limits.h>
 
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1337
+# endif
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <limits.h>
+char	*ft_handle_read(char **big_buffer, char *buffer, int b_read, int fd);
 
-char    *get_next_line(int fd);
+char	*ft_line_alloc(char *big_buf, char *buffer, int b_read);
+
+char	*ft_extract_line(char *buff, int len);
+
 void	ft_bzero(void *s, size_t n);
-void	*ft_calloc(size_t n, size_t size);
-void	ft_strlcat(char *dest, const char *src);
-char    *ft_(char *buff, int i);
 
+void	*ft_calloc(size_t n, size_t size);
+
+char	*ft_strjoin(char *s1, char *s2);
+
+char	*get_next_line(int fd);
+
+size_t	ft_strlen(char *s);
 
 #endif
