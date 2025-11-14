@@ -6,46 +6,11 @@
 /*   By: momahdam <momahdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 12:06:45 by momahdam          #+#    #+#             */
-/*   Updated: 2025/11/14 19:16:19 by momahdam         ###   ########.fr       */
+/*   Updated: 2025/11/13 21:49:20 by momahdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-
-char	*ft_line_alloc(char *big_buffer, char *buffer, int b_read)
-{
-	char	*line;
-
-	if (b_read <= 0)
-		return (big_buffer);
-	if (!big_buffer)
-		big_buffer = ft_calloc(1, 1);
-	if (!big_buffer)
-		return (NULL);
-	line = ft_strjoin(big_buffer, buffer);
-	if (!line)
-		return (free(buffer), free(big_buffer), NULL);
-	return (line);
-}	
-
-char	*ft_handle_read(char **big_buffer, char *buffer, int b_read, int fd)
-{
-	if (b_read < 0)
-	{
-		free(big_buffer[fd]);
-		big_buffer[fd] = NULL;
-		return (free(buffer), NULL);
-	}
-	if (b_read == 0 && (!big_buffer[fd] || !big_buffer[fd][0]))
-	{
-		free(big_buffer[fd]);
-		big_buffer[fd] = NULL;
-		return (free(buffer), NULL);
-	}
-	big_buffer[fd] = ft_line_alloc(big_buffer[fd], buffer, b_read);
-	free(buffer);
-	return (big_buffer[fd]);
-}
 
 char	*ft_extract_line(char *buff, int len)
 {
@@ -64,6 +29,39 @@ char	*ft_extract_line(char *buff, int len)
 	line[i] = '\0';
 	ft_memmove(buff, buff + len, ft_strlen(buff + len) + 1);
 	return (line);
+}
+
+char	*ft_line_alloc(char *big_buffer, char *buffer, int b_read)
+{
+	char	*line;
+
+	if (b_read <= 0)
+		return (big_buffer);
+	if (!big_buffer)
+		big_buffer = ft_calloc(1, 1);
+	if (!big_buffer)
+		return (NULL);
+	line = ft_strjoin(big_buffer, buffer);
+	return (line);
+}
+
+char	*ft_handle_read(char **big_buffer, char *buffer, int b_read, int fd)
+{
+	if (b_read < 0)
+	{
+		free(big_buffer[fd]);
+		big_buffer[fd] = NULL;
+		return (free(buffer), NULL);
+	}
+	if (b_read == 0 && (!big_buffer[fd] || !big_buffer[fd][0]))
+	{
+		free(big_buffer[fd]);
+		big_buffer[fd] = NULL;
+		return (free(buffer), NULL);
+	}
+	big_buffer[fd] = ft_line_alloc(big_buffer[fd], buffer, b_read);
+	free(buffer);
+	return (big_buffer[fd]);
 }
 
 char	*get_next_line(int fd)

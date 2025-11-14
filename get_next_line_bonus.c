@@ -6,7 +6,7 @@
 /*   By: momahdam <momahdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 12:06:45 by momahdam          #+#    #+#             */
-/*   Updated: 2025/11/14 18:54:30 by momahdam         ###   ########.fr       */
+/*   Updated: 2025/11/13 21:49:30 by momahdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@ char	*ft_line_alloc(char *big_buffer, char *buffer, int b_read)
 	if (!big_buffer)
 		return (NULL);
 	line = ft_strjoin(big_buffer, buffer);
-	if (!line)
-		return (free(buffer), free(big_buffer), NULL);
 	return (line);
-}	
+}
 
 char	*ft_handle_read(char **big_buffer, char *buffer, int b_read, int fd)
 {
