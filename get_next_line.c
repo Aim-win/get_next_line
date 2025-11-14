@@ -6,30 +6,11 @@
 /*   By: momahdam <momahdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 12:06:45 by momahdam          #+#    #+#             */
-/*   Updated: 2025/11/13 21:49:20 by momahdam         ###   ########.fr       */
+/*   Updated: 2025/11/14 19:16:19 by momahdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-
-char	*ft_extract_line(char *buff, int len)
-{
-	char	*line;
-	int		i;
-
-	i = 0;
-	line = malloc(len + 1);
-	if (!line)
-		return (NULL);
-	while (i < len && buff[i])
-	{
-		line[i] = buff[i];
-		i++;
-	}
-	line[i] = '\0';
-	ft_memmove(buff, buff + len, ft_strlen(buff + len) + 1);
-	return (line);
-}
 
 char	*ft_line_alloc(char *big_buffer, char *buffer, int b_read)
 {
@@ -42,8 +23,10 @@ char	*ft_line_alloc(char *big_buffer, char *buffer, int b_read)
 	if (!big_buffer)
 		return (NULL);
 	line = ft_strjoin(big_buffer, buffer);
+	if (!line)
+		return (free(buffer), free(big_buffer), NULL);
 	return (line);
-}
+}	
 
 char	*ft_handle_read(char **big_buffer, char *buffer, int b_read, int fd)
 {
@@ -62,6 +45,25 @@ char	*ft_handle_read(char **big_buffer, char *buffer, int b_read, int fd)
 	big_buffer[fd] = ft_line_alloc(big_buffer[fd], buffer, b_read);
 	free(buffer);
 	return (big_buffer[fd]);
+}
+
+char	*ft_extract_line(char *buff, int len)
+{
+	char	*line;
+	int		i;
+
+	i = 0;
+	line = malloc(len + 1);
+	if (!line)
+		return (NULL);
+	while (i < len && buff[i])
+	{
+		line[i] = buff[i];
+		i++;
+	}
+	line[i] = '\0';
+	ft_memmove(buff, buff + len, ft_strlen(buff + len) + 1);
+	return (line);
 }
 
 char	*get_next_line(int fd)
