@@ -1,0 +1,10 @@
+                                    Main message
+Build strong foundations without shortcuts.
+Really develop tech & power skills.
+Experience real peer-learning, start learning how to learn and solve new problems.
+The learning journey is more important than the result.
+Learn about the risks associated with AI, and develop effective control practices
+and countermeasures to avoid common pitfalls.
+Read as little data as possible each time get_next_line() is called.
+If a newline character is encountered, return the current line immediately.
+Don’t read the whole file and then process each line.

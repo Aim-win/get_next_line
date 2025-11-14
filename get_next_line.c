@@ -6,7 +6,7 @@
 /*   By: momahdam <momahdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 12:06:45 by momahdam          #+#    #+#             */
-/*   Updated: 2025/11/12 11:12:52 by momahdam         ###   ########.fr       */
+/*   Updated: 2025/11/13 21:49:20 by momahdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ char	*ft_handle_read(char **big_buffer, char *buffer, int b_read, int fd)
 	{
 		free(big_buffer[fd]);
 		big_buffer[fd] = NULL;
-		return (NULL);
+		return (free(buffer), NULL);
 	}
 	if (b_read == 0 && (!big_buffer[fd] || !big_buffer[fd][0]))
 	{
 		free(big_buffer[fd]);
 		big_buffer[fd] = NULL;
-		return (NULL);
+		return (free(buffer), NULL);
 	}
 	big_buffer[fd] = ft_line_alloc(big_buffer[fd], buffer, b_read);
 	free(buffer);
@@ -66,12 +66,12 @@ char	*ft_handle_read(char **big_buffer, char *buffer, int b_read, int fd)
 
 char	*get_next_line(int fd)
 {
-	static char	*big_buffer[4096];
+	static char	*big_buffer[1024];
 	char		*buffer;
 	int			b_read;
 	int			i;
 
-	if (fd < 0 || fd >= 4096 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0)
 		return (NULL);
 	while (1)
 	{
